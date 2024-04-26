@@ -12,14 +12,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(LayerShellQt REQUIRED)
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(FOREIGN_TOPLEVEL_MANAGEMENT REQUIRED qt6-foreign-toplevel-management)
 
 set(PROJECT_SOURCES
         src/main.cpp
         src/mainwindow.cpp
         src/mainmenu.cpp
+        src/taskbutton.cpp
 
         src/include/mainwindow.hpp
         src/include/mainmenu.hpp
+        src/include/taskbutton.hpp
 
         src/ui/mainwindow.ui
         src/ui/mainmenu.ui
@@ -31,7 +36,8 @@ qt_add_executable(ankkanen-panel
 
 target_link_libraries(ankkanen-panel PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
-    LayerShellQt::Interface)
+    LayerShellQt::Interface
+    ${FOREIGN_TOPLEVEL_MANAGEMENT_LIBRARIES})
 
 target_include_directories(ankkanen-panel PRIVATE
     src/include)

@@ -14,6 +14,9 @@ class MainMenu : public QDialog {
 	explicit MainMenu(QWidget *parent = nullptr);
 	~MainMenu();
 
+    private slots:
+	void launchTerminal();
+
     private:
 	Ui::MainMenu *ui;
 };

@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 	w.connect(qw, &QWindow::heightChanged, &w,
 		  &MainWindow::onWindowHeightChanged);
 	w.prepare();
+	qunsetenv("QT_WAYLAND_SHELL_INTEGRATION");
 
 	return a.exec();
 }

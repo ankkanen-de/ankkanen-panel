@@ -21,10 +21,14 @@ set(PROJECT_SOURCES
         src/mainwindow.cpp
         src/mainmenu.cpp
         src/taskbutton.cpp
+        src/desktopentry.cpp
+        src/applicationmodel.cpp
 
         src/include/mainwindow.hpp
         src/include/mainmenu.hpp
         src/include/taskbutton.hpp
+        src/include/desktopentry.hpp
+        src/include/applicationmodel.hpp
 
         src/ui/mainwindow.ui
         src/ui/mainmenu.ui

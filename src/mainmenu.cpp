@@ -6,10 +6,13 @@
 MainMenu::MainMenu(QWidget *parent)
 	: QDialog(parent)
 	, ui(new Ui::MainMenu)
+	, m_model(new ApplicationModel(this))
 {
 	ui->setupUi(this);
-	connect(ui->testButton, &QPushButton::clicked, this,
-		&MainMenu::launchTerminal);
+	ui->appTree->setModel(m_model);
+
+	connect(ui->appTree, &QTreeView::clicked, this,
+		&MainMenu::launchApplication);
 }
 
 MainMenu::~MainMenu()
@@ -17,8 +20,8 @@ MainMenu::~MainMenu()
 	delete ui;
 }
 
-void MainMenu::launchTerminal()
+void MainMenu::launchApplication(const QModelIndex &index)
 {
 	setVisible(false);
-	QProcess::startDetached("konsole");
+	m_model->launchApplication(index);
 }

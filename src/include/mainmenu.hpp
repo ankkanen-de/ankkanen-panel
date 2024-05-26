@@ -1,5 +1,7 @@
 #pragma once
 
+#include "applicationmodel.hpp"
+
 #include <QDialog>
 
 namespace Ui
@@ -15,8 +17,9 @@ class MainMenu : public QDialog {
 	~MainMenu();
 
     private slots:
-	void launchTerminal();
+	void launchApplication(const QModelIndex &index);
 
     private:
 	Ui::MainMenu *ui;
+	ApplicationModel *m_model;
 };

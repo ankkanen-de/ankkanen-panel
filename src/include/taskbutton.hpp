@@ -12,6 +12,7 @@ class TaskButton : public QPushButton {
     private slots:
 	void onTitleChanged(QString title);
 	void onStateChanged(QSet<ForeignToplevelHandleV1::State> state);
+	void onAppIdChanged(QString appId);
 	void onClicked();
 
     private:

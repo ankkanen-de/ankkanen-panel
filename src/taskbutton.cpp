@@ -1,4 +1,5 @@
 #include "taskbutton.hpp"
+#include "desktopentry.hpp"
 
 TaskButton::TaskButton(ForeignToplevelHandleV1 *handle, QWidget *parent)
 	: QPushButton(parent)
@@ -13,6 +14,8 @@ TaskButton::TaskButton(ForeignToplevelHandleV1 *handle, QWidget *parent)
 		&TaskButton::onTitleChanged);
 	connect(m_handle, &ForeignToplevelHandleV1::stateChanged, this,
 		&TaskButton::onStateChanged);
+	connect(m_handle, &ForeignToplevelHandleV1::appIdChanged, this,
+		&TaskButton::onAppIdChanged);
 }
 
 void TaskButton::onTitleChanged(QString title)
@@ -23,6 +26,11 @@ void TaskButton::onTitleChanged(QString title)
 void TaskButton::onStateChanged(QSet<ForeignToplevelHandleV1::State> state)
 {
 	setChecked(state.contains(ForeignToplevelHandleV1::Activated));
+}
+
+void TaskButton::onAppIdChanged(QString appId)
+{
+	setIcon(QIcon::fromTheme(DesktopEntry::forAppId(appId).icon()));
 }
 
 void TaskButton::onClicked()
